@@ -10,10 +10,10 @@
 // This function called recursively until the DOM tree is fully traversed.
 // 
 // Parameters:
-// - targetDocument is where the tree will be printed into
-// - currentElement is the element that we want to print
-// - depth is the depth of the current element 
-//   (it should be 1 for the initial element)
+// - targetDocument : 트리가 프린트될 곳.
+// - currentElement : 현재 처리중인 엘리먼트
+// - depth : 현재 엘리먼트 깊이
+//   (엘리먼트 하나당 1)
 ////////////////////////////////////////////
 function traverseDOMTree(targetDocument, currentElement, depth)
 {
@@ -21,9 +21,11 @@ function traverseDOMTree(targetDocument, currentElement, depth)
   {
     var j;
     var tagName=currentElement.tagName;
-    // Prints the node tagName, such as <A>, <IMG>, etc
-    if (tagName)
-      targetDocument.writeln("&lt;"+currentElement.tagName+"&gt;");
+    // 여는 태그 작성
+    if (tagName){
+      targetDocument.writeln("&nbsp;&nbsp;");
+      targetDocument.writeln("----&lt;"+currentElement.tagName+"&gt;");
+    }
     else  {
       //targetDocument.writeln("[unknown tag]" + currentElement.nodeName + n.nodeValue);
       if ( currentElement.nodeValue != null )
@@ -32,7 +34,7 @@ function traverseDOMTree(targetDocument, currentElement, depth)
         targetDocument.writeln("null");
     }
 
-    // Traverse the tree
+    // 트리 그리기
     var i=0;
     var currentElementChild=currentElement.childNodes[i];
     while (currentElementChild)
@@ -41,32 +43,34 @@ function traverseDOMTree(targetDocument, currentElement, depth)
       targetDocument.write("<BR>\n");
       for (j=0; j<depth; j++)
       {
-        // &#166 is just a vertical line
+        // 엘리먼트 깊이 버티컬 라인
         targetDocument.write("&nbsp;&nbsp;&#166");
-      }								
+      }    
       targetDocument.writeln("<BR>");
       for (j=0; j<depth; j++)
       {
         targetDocument.write("&nbsp;&nbsp;&#166");
-      }					
-      if (tagName)
-        targetDocument.write("----");
+      }		
+      //태그이름을 만나면 그을 선               
+      //if (tagName){
+      //  targetDocument.write(currentElement.tagName);
+      //}
 
-      // Recursively traverse the tree structure of the child node
+      // 자식노드 유무 검사
       if ( currentElementChild.tagName || (currentElementChild.nodeValue.length > 1) )
         traverseDOMTree(targetDocument, currentElementChild, depth+1);
       i++;
       currentElementChild=currentElement.childNodes[i];
     }
-    // The remaining code is mostly for formatting the tree
+    // 닫는 태그 작성
     targetDocument.writeln("<BR>");
     for (j=0; j<depth-1; j++)
     {
       targetDocument.write("&nbsp;&nbsp;&#166");
-    }			
+    }         
     targetDocument.writeln("&nbsp;&nbsp;");
     if (tagName)
-      targetDocument.writeln("&lt;/"+tagName+"&gt;");
+      targetDocument.writeln("----&lt;/"+tagName+"&gt;");
   }
 }
 ////////////////////////////////////////////
