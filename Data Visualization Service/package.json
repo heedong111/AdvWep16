@@ -1,0 +1,31 @@
+{
+  "name": "advweb_session",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.0",
+    "mysql": "^2.12.0",
+    "python-shell": "^0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/souljungkim/init_node_gulp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "undescripted",
+  "bugs": {
+    "url": "https://github.com/souljungkim/init_node_gulp/issues"
+  },
+  "homepage": "https://github.com/souljungkim/init_node_gulp#readme"
+}
